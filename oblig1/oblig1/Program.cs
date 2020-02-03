@@ -20,7 +20,6 @@ namespace oblig1
             personer.Add(new Person(firstName: "Sonja", birthYear: 1937));
             personer.Add(new Person(firstName: "Olav", birthYear: 1903));
 
-
             personer[0].Father(personer[2]);
             personer[0].Mother(personer[3]);
             personer[1].Father(personer[2]);
@@ -33,11 +32,15 @@ namespace oblig1
 
            
 
-            foreach (var person in personer)
-            {
-                Console.WriteLine($"{person.Id()} {person.Name()}");
-            }
+            //foreach (var person in personer)
+            //{
+            //    Console.WriteLine($"{person.Id()} {person.Name()}");
+            //}
 
+
+            //Console.WriteLine(personer[0].Dead());
+
+            KonsollKommando.Liste(personer);
 
         }
     }

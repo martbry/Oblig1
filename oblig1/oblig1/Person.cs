@@ -15,8 +15,8 @@ namespace oblig1
         private int? _birthYear;
         private int? _deathYear;
 
-        private Person _mother;
-        private Person _father;
+        public Person MotherOf;
+        public Person FatherOf;
 
 
         public Person(string firstName = "____", string lastName = "____", int? birthYear = null, int? deathYear = null)
@@ -37,8 +37,8 @@ namespace oblig1
 
             var birthyear = _birthYear == null ? "" : $"Born: {_birthYear.ToString()}";
 
-            var mother = _mother == default(Person) ? "" : $"Mor: {_mother.Name()} (ID: {_mother.Id().ToString()})";
-            var father = _father == default(Person) ? "" : $"Far: {_father.Name()} (ID: {_father.Id().ToString()})";
+            var mother = this.MotherOf == default(Person) ? "" : $"Mor: {this.MotherOf.Name()} (ID: {this.MotherOf.Id().ToString()})";
+            var father = this.FatherOf == default(Person) ? "" : $"Far: {this.FatherOf.Name()} (ID: {this.FatherOf.Id().ToString()})";
 
 
             return $"Name: {_firstName} {_lastName} (ID: {_id})\n" +
@@ -52,6 +52,21 @@ namespace oblig1
             return $"{_firstName} {_lastName}";
         }
 
+        public string FirstName()
+        {
+            return this._firstName;
+        }
+
+        public string LastName()
+        {
+            return this._lastName;
+        }
+
+        public int? BirthYear()
+        {
+            return this._birthYear;
+        }
+
         public int Id()
         {
             return this._id;
@@ -59,14 +74,23 @@ namespace oblig1
 
         public void Mother(Person mother)
         {
-            this._mother = mother;
+            this.MotherOf = mother;
         }
 
         public void Father(Person father)
         {
-            this._father = father;
+            this.FatherOf = father;
         }
 
+        public bool Dead()
+        {
+            return this._deathYear != null;
+        }
+
+        public string DeathYear()
+        {
+            return this.Dead() ? this.DeathYear() : "";
+        }
 
     }
 }
