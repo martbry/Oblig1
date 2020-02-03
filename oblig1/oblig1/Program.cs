@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace oblig1
 {
@@ -30,17 +31,41 @@ namespace oblig1
             personer[5].Father(personer[7]);
 
 
-           
-
-            //foreach (var person in personer)
-            //{
-            //    Console.WriteLine($"{person.Id()} {person.Name()}");
-            //}
+            var input = "";
+            var konsoll = typeof(KonsollKommando);
+            MethodInfo metode;
 
 
-            //Console.WriteLine(personer[0].Dead());
+            Console.WriteLine("Skriv \"Hjelp\" for å vise kommandoer (Case sensitive)\n\n");
 
-            KonsollKommando.Liste(personer);
+            while (input != "stopp")
+            {
+                input = Console.ReadLine();
+
+                if (input == "stopp" || input == "Stopp") {break;}
+                
+                if (konsoll.GetMethod(input) == null) {Console.WriteLine("Dette støttes ikke. Prøv igjen \n\n"); continue;}
+
+                if (input == "Vis")
+                {
+                    Console.WriteLine("Skriv inn IDen på personen du ønsker å vise informasjonen til\n");
+                    var argumentId = Console.ReadLine();
+                    konsoll.GetMethod(input).Invoke(null, new object[]{Convert.ToInt32(argumentId), personer});
+                    input = "";
+                    continue;
+                }
+
+                if (input == "Liste")
+                {
+                    konsoll.GetMethod(input).Invoke(null, new object[] { personer });
+                    input = "";
+                    continue;
+                }
+
+                konsoll.GetMethod(input).Invoke(null, null);
+
+
+            }
 
         }
     }
