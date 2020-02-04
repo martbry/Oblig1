@@ -39,8 +39,6 @@ namespace oblig1
         {
             //Vis info om personen, samt barn og foreldre?
 
-
-
             var birthyear = _birthYear == null ? "" : $"Born: {_birthYear.ToString()}";
 
             var mother = this.MotherOf == default(Person) ? "" : $"Mother: {this.MotherOf.Name()} (ID: {this.MotherOf.Id().ToString()})\n";
@@ -102,7 +100,7 @@ namespace oblig1
 
         public string DeathYear()
         {
-            return this.Dead() ? this.DeathYear() : "";
+            return this.Dead() ? this._deathYear.ToString() : "";
         }
 
     }

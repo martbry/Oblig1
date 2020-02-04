@@ -21,12 +21,13 @@ namespace oblig1
                 personer.Add(new Person(firstName: "Harald", birthYear: 1937));
                 personer.Add(new Person(firstName: "Sonja", birthYear: 1937));
                 personer.Add(new Person(firstName: "Olav", birthYear: 1903));
+                //personer.Add(new Person());
+
             }
-            catch(System.ArgumentException e)
+            catch (System.ArgumentException e)
             {
                 Console.WriteLine(e + "\n\n");
             }
-            
 
             personer[0].Father(personer[2]);
             personer[0].Mother(personer[3]);

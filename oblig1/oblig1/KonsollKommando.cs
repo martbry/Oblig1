@@ -9,7 +9,6 @@ namespace oblig1
         static public void Hjelp()
         {
             //viser en hjelpetekst som forklarer alle kommandoene
-
             Console.WriteLine($"\"Stopp\" avslutter programmet\n" +
                               $"\"Hjelp\" viser denne menyen\n" +
                               $"\"Liste\" viser en liste alle registrerte personer og litt informasjon om dem\n" +
