@@ -21,6 +21,12 @@ namespace oblig1
 
         public Person(string firstName = "____", string lastName = "____", int? birthYear = null, int? deathYear = null)
         {
+
+            if (firstName == "____" && lastName == "____" && birthYear == null && deathYear == null)
+            {
+                throw new System.ArgumentException("Du må spesifisere minst én av følgende: fornavn, etternavn, fødselsår eller dødsår");
+            }
+
             this._id = Person.Antall;
             this._firstName = firstName;
             this._lastName = lastName;
@@ -37,14 +43,26 @@ namespace oblig1
 
             var birthyear = _birthYear == null ? "" : $"Born: {_birthYear.ToString()}";
 
-            var mother = this.MotherOf == default(Person) ? "" : $"Mor: {this.MotherOf.Name()} (ID: {this.MotherOf.Id().ToString()})";
-            var father = this.FatherOf == default(Person) ? "" : $"Far: {this.FatherOf.Name()} (ID: {this.FatherOf.Id().ToString()})";
+            var mother = this.MotherOf == default(Person) ? "" : $"Mother: {this.MotherOf.Name()} (ID: {this.MotherOf.Id().ToString()})\n";
+            var father = this.FatherOf == default(Person) ? "" : $"Father: {this.FatherOf.Name()} (ID: {this.FatherOf.Id().ToString()})\n";
 
 
             return $"Name: {_firstName} {_lastName} (ID: {_id})\n" +
                    $"{birthyear}\n" +
-                   $"{mother}\n" +
+                   $"{mother}" +
                    $"{father}";
+        }
+
+        public string ShowThisPerson()
+        {
+            var birthyear = _birthYear == null ? "" : $"Born: {_birthYear.ToString()}";
+
+            return $"Name: {_firstName} {_lastName} (ID: {_id}) {birthyear}";
+        }
+
+        public int Id()
+        {
+            return this._id;
         }
 
         public string Name()
@@ -65,11 +83,6 @@ namespace oblig1
         public int? BirthYear()
         {
             return this._birthYear;
-        }
-
-        public int Id()
-        {
-            return this._id;
         }
 
         public void Mother(Person mother)

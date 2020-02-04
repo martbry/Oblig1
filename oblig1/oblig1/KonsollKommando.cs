@@ -36,8 +36,28 @@ namespace oblig1
         static public void Vis(int id, List<Person> personer)
         {
             //Viser en bestemt person med mor, far og barn (og id for disse, slik at man lett kan vise en av dem)
-            //personer[id].Show();
+
+            List<Person> barn = new List<Person>();
+            foreach (var person in personer)
+            {
+                if (person.FatherOf == personer[id] || person.MotherOf == personer[id])
+                {
+                    barn.Add(person);
+                }
+            }
+
             Console.WriteLine(personer[id].Show());
+
+            if (barn.Count > 0)
+            {
+                Console.WriteLine("Kids:");
+                foreach (var barnIListe in barn)
+                {
+                    Console.WriteLine(barnIListe.ShowThisPerson());
+                }
+                Console.WriteLine("");
+            }
+
         }
 
 

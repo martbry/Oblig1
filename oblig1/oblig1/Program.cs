@@ -11,15 +11,22 @@ namespace oblig1
 
             List<Person> personer = new List<Person>();
 
-
-            personer.Add(new Person(firstName: "Sverre Magnus", birthYear: 2005));
-            personer.Add(new Person(firstName: "Ingrid Alexandra", birthYear: 2004));
-            personer.Add(new Person(firstName: "Haakon Magnus", birthYear: 1973));
-            personer.Add(new Person(firstName: "Mette-Marit", birthYear: 1973));
-            personer.Add(new Person(firstName: "Marius", lastName: "Borg Høiby", birthYear: 1997));
-            personer.Add(new Person(firstName: "Harald", birthYear: 1937));
-            personer.Add(new Person(firstName: "Sonja", birthYear: 1937));
-            personer.Add(new Person(firstName: "Olav", birthYear: 1903));
+            try
+            {
+                personer.Add(new Person(firstName: "Sverre Magnus", birthYear: 2005));
+                personer.Add(new Person(firstName: "Ingrid Alexandra", birthYear: 2004));
+                personer.Add(new Person(firstName: "Haakon Magnus", birthYear: 1973));
+                personer.Add(new Person(firstName: "Mette-Marit", birthYear: 1973));
+                personer.Add(new Person(firstName: "Marius", lastName: "Borg Høiby", birthYear: 1997));
+                personer.Add(new Person(firstName: "Harald", birthYear: 1937));
+                personer.Add(new Person(firstName: "Sonja", birthYear: 1937));
+                personer.Add(new Person(firstName: "Olav", birthYear: 1903));
+            }
+            catch(System.ArgumentException e)
+            {
+                Console.WriteLine(e + "\n\n");
+            }
+            
 
             personer[0].Father(personer[2]);
             personer[0].Mother(personer[3]);
@@ -33,7 +40,7 @@ namespace oblig1
 
             var input = "";
             var konsoll = typeof(KonsollKommando);
-            MethodInfo metode;
+            //MethodInfo metode;
 
 
             Console.WriteLine("Skriv \"Hjelp\" for å vise kommandoer (Case sensitive)\n\n");
@@ -48,7 +55,7 @@ namespace oblig1
 
                 if (input == "Vis")
                 {
-                    Console.WriteLine("Skriv inn IDen på personen du ønsker å vise informasjonen til\n");
+                    Console.WriteLine("Skriv inn IDen på personen du ønsker å vise informasjonen til");
                     var argumentId = Console.ReadLine();
                     konsoll.GetMethod(input).Invoke(null, new object[]{Convert.ToInt32(argumentId), personer});
                     input = "";
